@@ -35,6 +35,15 @@ public class Helper {
 		return mainTag + "->" + subTag;
 	}
 	
+	/**
+	 * Helps to create a new tag that is a combination of two tags
+	 * @param c {@code Class} representing the new class for which to create a tag for
+	 * @return {@code String} representing the new tag
+	 */
+	public static String createTag(Class c) {
+		return MAIN_TAG + "->" + c.getName();
+	}
+	
 	public static String toHex(byte[] arrayBytes) {
 	    StringBuffer stringBuffer = new StringBuffer();
 	    for (int i = 0; i < arrayBytes.length; i++) {
