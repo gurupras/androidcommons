@@ -6,9 +6,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.example.androidcommons.Helper;
+
+import android.util.Log;
+
 import static com.example.androidcommons.Helper.pad;
 
 public abstract class Message {
+	private static final String TAG = Helper.createTag(Message.class);
+	
 	private static Map<Class, Integer> classMap = new HashMap<Class, Integer>();
 	private static AtomicInteger counter = new AtomicInteger();
 	private int messageLength;
@@ -66,9 +72,13 @@ public abstract class Message {
 		
 		int messageLength 	= bb.getInt();
 		int messageType	= bb.getInt();
+		
+		Log.d(TAG, "Message Length: " + messageLength);
+		Log.d(TAG, "Message Type:   " + messageType);
 
 		int remainingBytes = messageLength - bb.position();
 		ByteBuffer buffer = ByteBuffer.allocate(remainingBytes);
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		buffer.put(bytes, bb.position(), remainingBytes);
 		buffer.rewind();
 		bb = null;
