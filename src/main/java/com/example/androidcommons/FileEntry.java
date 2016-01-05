@@ -130,7 +130,7 @@ public class FileEntry extends HashSet<FileEntry> {
 		return this._buildTree(null);
 	}
 	
-	public boolean _buildTree(String[] extensions) {
+	private boolean _buildTree(String[] extensions) {
 		TimeKeeper tk = new TimeKeeper();
 		tk.start();
 		boolean wasUpdated = false;
